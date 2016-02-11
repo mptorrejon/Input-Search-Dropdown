@@ -1,0 +1,18 @@
+html{
+	background: #fff;
+}
+input{
+	display: block;
+	border:0px;
+	border-bottom:1px solid #000;
+}
+label{
+	display: block;
+	font-size: 12px;
+	color:green;
+}
+.dropdown{
+	max-height: 90px;
+	background:yellow;
+	overflow-y:hidden;
+}
