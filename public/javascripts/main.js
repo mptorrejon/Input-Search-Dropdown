@@ -13,12 +13,16 @@ App.directive('inputText', function(){
 	return {
 		restrict: 'E',
 		template: [
-			'<input type-in type="text" />'+
+			'<input type-in type="text" which={{field}} />'+
 			'<label>This is a label</label>'+
 			'<div class="dropdown">'+
 				'<div ng-repeat="item in data">{{item.name}}</div>'+
 			'</div>'
-		]
+		],
+		link: function(scope, elem, attr){
+			scope.field = attr['type'];
+			console.log('---> '+scope.field)
+		}
 	}
 });
 App.directive('typeIn', function($filter){
@@ -29,14 +33,20 @@ App.directive('typeIn', function($filter){
 		restrict: 'A',
 		link: function(scope, elem, attr){
 			elem.bind('keyup', function(){
-				//console.log(scope.$parent.data)
-				var result = $filter('filter')(scope.$parent.data1, {name: elem[0].value });
+				/*scope.which = attr['which'];
+				console.log(scope.which);
+				var keyVal = eval(scope.which);
+				console.log(keyVal);*/
+
+				var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
       			scope.$parent.data = result;
-      			console.log(scope)
-      			console.log(scope.$parent.data);
-      			//console.log(result);
       			scope.$apply();
+      			
 			});
+		},
+		controller: function($scope){
+			console.log($scope);
 		}
+
 	}
 });
