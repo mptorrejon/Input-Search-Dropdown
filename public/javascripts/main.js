@@ -14,7 +14,7 @@ App.controller('thisApp', function($scope, $http){
 App.directive('inputText', function(){
 	return {
 		scope: { 
-			which : '@',
+			which : '@'
 		},
 		restrict: 'E',
 		template: [
@@ -34,18 +34,45 @@ App.directive('typeIn', function($filter){
 		restrict: 'A',
 		link: function($scope, elem, attr){
 			elem.bind('keyup', function(){
+				//console.log($scope.$parent.data1)
 				$scope.which = attr['which'];
-				console.log($scope.which);
-				//var result = $scope.searchJson( scope.$parent.data1, scope.which );
-				//var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
-      			//scope.$parent.data = result;
-      			//scope.$apply();
+				var key = "";
+				var word = "";
+				var newArray = [];
+
+      			for(var i=0; i< $scope.$parent.data1.length; i++){
+      				var result = "";
+      				if($scope.which == 'name'){
+      					/*
+      					key = $scope.$parent.data1[i].name;
+      					for(k in key){
+      						word+=key[k];
+      						if(word.toLowerCase() == elem[0].value.toLowerCase() ){
+      							var newArray = key;
+      							console.log( newArray );
+      						}
+      					}
+      					word="";
+      					*/
+      					result = $scope.JsonSearch($scope.$parent.data1[i].name, elem[0].value);
+      					console.log(result);
+      				}
+      				else{
+      					key = $scope.$parent.data1[i].capital;
+      				}
+      			}
 			});
 		},
 		controller: function($scope){
-			$scope.searchJson = function(data, key){
-				console.log(key);
-				console.log(key);
+			$scope.JsonSearch = function(key, value){
+				var word = "";
+				for(k in key){
+					word+=key[k];
+					if(word.toLowerCase() == value.toLowerCase() ){
+						return key;
+					}
+				}
+				word = "";
 			}
 		}
 	}
