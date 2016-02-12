@@ -17,7 +17,7 @@ App.directive('inputText', function(){
 		restrict: 'E',
 		template: [
 			'<input type-in type="text" which={{field}} />'+
-			'<label>This is a label</label>'+
+			'<label>Search for {{field}}</label>'+
 			'<div class="dropdown">'+
 				'<div ng-repeat="item in data">{{item.name}}</div>'+
 			'</div>'
@@ -34,7 +34,7 @@ App.directive('typeIn', function($filter){
 			elem.bind('keyup', function(){
 				$scope.which = attr['which'];
 				console.log($scope.which);
-				//var result = $scope.searchJson( scope.$parent.data1, scope.which );
+								//var result = $scope.searchJson( scope.$parent.data1, scope.which );
 				//var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
       			//scope.$parent.data = result;
       			//scope.$apply();
