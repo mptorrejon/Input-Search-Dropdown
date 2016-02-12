@@ -1,3 +1,4 @@
+/**/
 var App = angular.module('app', []);
 App.controller('thisApp', function($scope, $http){
 	$http.get('https://restcountries.eu/rest/v1/all')
