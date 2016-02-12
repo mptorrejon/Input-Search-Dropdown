@@ -1,4 +1,5 @@
 /*this is a branch - mauricio*/
+/*Thisd is a new comment*/
 var App = angular.module('app', []);
 App.controller('thisApp', function($scope, $http){
 	$http.get('https://restcountries.eu/rest/v1/all')
@@ -39,12 +40,12 @@ App.directive('typeIn', function($filter){
 				//var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
       			//scope.$parent.data = result;
       			//scope.$apply();
-      			
 			});
 		},
 		controller: function($scope){
 			$scope.searchJson = function(data, key){
-				console.log(key)
+				console.log(key);
+				console.log(key);
 			}
 		}
 	}
