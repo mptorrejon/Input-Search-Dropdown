@@ -11,6 +11,9 @@ App.controller('thisApp', function($scope, $http){
 });
 App.directive('inputText', function(){
 	return {
+		scope: { 
+			which : '@',
+		},
 		restrict: 'E',
 		template: [
 			'<input type-in type="text" which={{field}} />'+
@@ -21,32 +24,27 @@ App.directive('inputText', function(){
 		],
 		link: function(scope, elem, attr){
 			scope.field = attr['type'];
-			console.log('---> '+scope.field)
 		}
 	}
 });
 App.directive('typeIn', function($filter){
 	return{
-		scope: {
-			data: '='
-		},
 		restrict: 'A',
-		link: function(scope, elem, attr){
+		link: function($scope, elem, attr){
 			elem.bind('keyup', function(){
-				/*scope.which = attr['which'];
-				console.log(scope.which);
-				var keyVal = eval(scope.which);
-				console.log(keyVal);*/
-
-				var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
-      			scope.$parent.data = result;
-      			scope.$apply();
+				$scope.which = attr['which'];
+				console.log($scope.which);
+				//var result = $scope.searchJson( scope.$parent.data1, scope.which );
+				//var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
+      			//scope.$parent.data = result;
+      			//scope.$apply();
       			
 			});
 		},
 		controller: function($scope){
-			console.log($scope);
+			$scope.searchJson = function(data, key){
+				console.log(key)
+			}
 		}
-
 	}
 });
