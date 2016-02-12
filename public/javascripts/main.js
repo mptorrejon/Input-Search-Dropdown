@@ -1,4 +1,4 @@
-/**/
+/*this is a branch - mauricio*/
 var App = angular.module('app', []);
 App.controller('thisApp', function($scope, $http){
 	$http.get('https://restcountries.eu/rest/v1/all')
@@ -35,7 +35,7 @@ App.directive('typeIn', function($filter){
 			elem.bind('keyup', function(){
 				$scope.which = attr['which'];
 				console.log($scope.which);
-								//var result = $scope.searchJson( scope.$parent.data1, scope.which );
+				//var result = $scope.searchJson( scope.$parent.data1, scope.which );
 				//var result = $filter('filter')(scope.$parent.data1, { name : elem[0].value });
       			//scope.$parent.data = result;
       			//scope.$apply();
