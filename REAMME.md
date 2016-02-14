@@ -4,4 +4,4 @@ I came accross a problem of needing to search in a JSON object using the same
 directory and looking for different values depending on what field is active.
 
 It was tough but I think I overcame my issue, this is a working copy, please if you have suggestion, let me know they are more than welcome.
-
+I use a country API and look for country name and capital just for demostration.
