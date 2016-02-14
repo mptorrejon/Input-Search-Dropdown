@@ -12,7 +12,8 @@ label{
 	color:green;
 }
 .dropdown{
-	max-height: 90px;
+	max-height:80px;
 	background:yellow;
 	overflow-y:hidden;
+	line-height:16px;
 }

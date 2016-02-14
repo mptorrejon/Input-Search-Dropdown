@@ -14,14 +14,14 @@ App.controller('thisApp', function($scope, $http){
 App.directive('inputText', function(){
 	return {
 		scope: { 
-			which : '@'
+			which : '='
 		},
 		restrict: 'E',
 		template: [
 			'<input type-in type="text" which={{field}} />'+
 			'<label>Search for {{field}}</label>'+
 			'<div class="dropdown">'+
-				'<div ng-repeat="item in data">{{item.name}}</div>'+
+				'<div ng-repeat="item in newArray">{{item.value}}</div>'+
 			'</div>'
 		],
 		link: function(scope, elem, attr){
@@ -33,34 +33,27 @@ App.directive('typeIn', function($filter){
 	return{
 		restrict: 'A',
 		link: function($scope, elem, attr){
+			
 			elem.bind('keyup', function(){
-				//console.log($scope.$parent.data1)
 				$scope.which = attr['which'];
 				var key = "";
 				var word = "";
-				var newArray = [];
-
+				$scope.newArray = [];	
       			for(var i=0; i< $scope.$parent.data1.length; i++){
       				var result = "";
       				if($scope.which == 'name'){
-      					/*
-      					key = $scope.$parent.data1[i].name;
-      					for(k in key){
-      						word+=key[k];
-      						if(word.toLowerCase() == elem[0].value.toLowerCase() ){
-      							var newArray = key;
-      							console.log( newArray );
-      						}
-      					}
-      					word="";
-      					*/
-      					result = $scope.JsonSearch($scope.$parent.data1[i].name, elem[0].value);
-      					console.log(result);
+      					result = $scope.JsonSearch( $scope.$parent.data1[i].name, elem[0].value );
+      					if(result != undefined)
+      						$scope.newArray.push({'value':result});
       				}
       				else{
-      					key = $scope.$parent.data1[i].capital;
+      					result = $scope.JsonSearch( $scope.$parent.data1[i].capital, elem[0].value )
+      					if(result !== undefined)
+      						$scope.newArray.push({'value':result});
       				}
+      				$scope.$digest();
       			}
+      			
 			});
 		},
 		controller: function($scope){
@@ -70,7 +63,7 @@ App.directive('typeIn', function($filter){
 					word+=key[k];
 					if(word.toLowerCase() == value.toLowerCase() ){
 						return key;
-					}
+					}					
 				}
 				word = "";
 			}
